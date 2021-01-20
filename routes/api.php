@@ -7,6 +7,9 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\RecipeController;
 use App\Http\Controllers\UserRecipesController;
+use App\Http\Controllers\TaskController;
+use App\Http\Controllers\TodoController;
+use App\Http\Controllers\TaskTodosController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,11 +26,14 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-
 Route::apiResource('registration', SignUpController::class) -> only(['store']);
 Route::apiResource('categories', CategoryController::class) -> only(['index']);
 Route::apiResource('recipes', RecipeController::class);
-Route::apiResource('users.recipes', UserRecipesController::class) -> only(['index']);;
+Route::apiResource('users.recipes', UserRecipesController::class) -> only(['index']);
+Route::apiResource('tasks', TaskController::class);
+Route::apiResource('todos', TodoController::class);
+Route::apiResource('tasks.todos', TaskTodosController::class) -> only(['index']);
+
 //api/auth/login
 Route::group([
 
